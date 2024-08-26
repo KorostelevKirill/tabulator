@@ -196,8 +196,7 @@ export default class Popup extends CoreFeature{
 		}
 		
 		//move menu to start on bottom edge if it is too close to the edge of the screen
-		let offsetHeight = Math.max(this.container.offsetHeight, scrollTop ? this.container.scrollHeight : 0);
-		if((y + this.element.offsetHeight) > offsetHeight) {
+		if((y + this.element.offsetHeight) > Math.max(this.container.offsetHeight, scrollTop ? this.container.scrollHeight : 0)) {
 			if(parentEl){
 				switch(position){
 					case "bottom":
@@ -209,7 +208,7 @@ export default class Popup extends CoreFeature{
 				}
 				
 			}else{
-				this.element.style.height = offsetHeight + "px";
+				this.element.style.top = (parseInt(this.element.style.top) - this.element.offsetHeight) + "px";
 			}
 		}
 	}
